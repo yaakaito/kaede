@@ -8,7 +8,6 @@
 
 var sys = require("sys"),
     net = require("net"),
-    fs  = require("fs"),
     chn = require("./channel");
 
 var Client = exports.Client =  function( conf){
