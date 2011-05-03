@@ -30,8 +30,9 @@ Client.prototype.initialize = function( conf){
     this.debug = true;
     this.connection = null;
 
-    // Load trigger 
     this.triggers = [conf.triggerHello];
+    this.events = {};
+    
 };
 
 Client.prototype.connect = function(){
