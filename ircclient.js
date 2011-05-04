@@ -29,9 +29,18 @@ Client.prototype.initialize = function( conf){
     this.debug = true;
     this.connection = null;
 
-    this.triggers = [conf.triggerHello];
-    this.events = {};
-    
+    this.event = {};
+    //load events
+    for( var key in conf){
+        sys.puts(key);
+        if( key.indexOf("event") == 0 && typeof( conf[key]) == "function"){
+            this.event[key.substr(5)] = conf[key];
+        }
+    }
+
+    for( var key in this.event){
+        sys.puts(key);
+    }
 };
 
 Client.prototype.connect = function(){
@@ -92,11 +101,17 @@ Client.prototype.disconnect = function( msg){
 
 Client.prototype.executeMessage = function( msg){
   
+    var event = this.event[msg.command];
+    if( event !== null && event !== undefined && typeof( event) == "function"){
+        event(this, msg);
+    }
+    
     switch( msg.command){
     case "PING":
         this.send( "PONG :" +  msg.args[0]);
+        break;
     case "PRIVMSG":
-        this.triggers[0]( this, msg);
+        break;
     }
 };
 
