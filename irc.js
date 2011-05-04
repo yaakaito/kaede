@@ -26,7 +26,7 @@ Client.prototype.initialize = function( conf){
     this.startupJoined = false;
     this.channels = {};
     this.timeout = 60*60*72;
-    this.debug = true;
+    this.debug = conf.debug || false;
     this.connection = null;
 
     this.event = {};

@@ -1,10 +1,11 @@
-var irc = require("../ircclient");
+var irc = require("../irc");
 
 var echo_bot = {
 
     host:"chat.freenode.net",
     channels:["#yaakaito"],
-    nick:"kaede_san"
+    nick:"kaede_san",
+    debug: true
 };
 
 echo_bot.eventPRIVMSG = function( client, msg){
