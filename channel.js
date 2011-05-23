@@ -24,3 +24,8 @@ Channel.prototype.post = function( msg){
     
     this.client.send( "PRIVMSG " + this.name + " : " + msg);
 };
+
+Channel.prototype.notice = function( msg){
+        
+    this.client.send( "NOTICE " + this.name + " : " + msg);
+};

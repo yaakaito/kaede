@@ -32,14 +32,9 @@ Client.prototype.initialize = function( conf){
     this.event = {};
     //load events
     for( var key in conf){
-        sys.puts(key);
         if( key.indexOf("event") == 0 && typeof( conf[key]) == "function"){
             this.event[key.substr(5)] = conf[key];
         }
-    }
-
-    for( var key in this.event){
-        sys.puts(key);
     }
 };
 

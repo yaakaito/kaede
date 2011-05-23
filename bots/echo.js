@@ -3,14 +3,23 @@ var irc = require("../irc");
 var echo_bot = {
 
     host:"chat.freenode.net",
-    channels:["#yaakaito"],
+    port:6667,
     nick:"kaede_san",
-    debug: true
+    userName:"kaede_san",
+    realName:"yaakaito@gmail.com",
+    channels:["#yaakaito"],
+    encoding:"utf8",
+    debug:true
 };
 
 echo_bot.eventPRIVMSG = function( client, msg){
 
     client.channels[msg.args[0]].post(msg.args[1]);
+};
+
+echo_bot.eventJOIN = function( client, msg){
+
+    client.channels[msg.args[0]].post("Hi, " + msg.prefix.split("!")[0]);
 };
 
 (function(){
